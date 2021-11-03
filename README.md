@@ -1,8 +1,9 @@
-# TetraCraft Plugin Template
-## Plugin template used for all Paper/Spigot plugins for TetraCraft.
+# Oblivion Account Link
+## Plugin used to sync ranks between Discord and Minecraft for OblivionMC.
 
 ### Features:
-- Dynamic plugin.yml creation
-	- Parse custom yaml files for command and permissions
-	- Define most spigot.yml parameters inside of gradle.properties
-- Kotlin baybeeeeeeeeeeeee
+- OAuth authorization for account linking (no more weird code commands)
+- 3 step process
+	- Run the command "/linkaccount"
+	- Click the link
+	- Click confirm
