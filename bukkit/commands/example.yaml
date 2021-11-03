@@ -1,0 +1,18 @@
+# - <common name>:
+#   description: A simple description.
+#   aliases:
+#   - ALIAS
+#   permission: "test.foo"
+#   permission-message: "Fuck you"
+#   usage: "USAGE: /test"
+
+root-permission-node: "testplugin"
+commands:
+  test:
+    description: "Test Command"
+    aliases:
+      - "testcommand"
+      - "t"
+    permission: "..test"
+    permission-message: "You don't have permission to run this command"
+    usage: "Usage: /test"

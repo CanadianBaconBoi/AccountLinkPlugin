@@ -1,0 +1,13 @@
+# - <common name>:
+#   description: A simple description.
+#   default: OP/NOTOP/TRUE/FALSE
+#   children
+#     .test.child: true
+
+root-permission-node: "testplugin"
+permissions:
+  .test:
+    description: "Test permission"
+    default: "OP"
+    children:
+      .test.child: true
