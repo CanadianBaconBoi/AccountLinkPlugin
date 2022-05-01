@@ -1,0 +1,18 @@
+oauth-url: "http://accountlink.oblivionmc.us/genoauth"
+unlink-url: "http://accountlink.oblivionmc.us/unlink"
+update-url: "http://accountlink.oblivionmc.us/update"
+update-key: "32e0356e6251b6bc8a7f260f3115759f857043042b9d77b25b58b34e01ef082ea436ddce35b6f0c65f1ce4fee3fb131082fc905686f9f01e6021335078017ae5"
+command-timeout: 15
+donor-ranks:
+  oblivionplus: "Oblivion+"
+  oblivion: "Oblivion"
+  emporer: "Emporer"
+  demigod: "Demigod"
+  titan: "Titan"
+  mage: "Mage"
+database:
+  host: "127.0.0.1"
+  port: 3306
+  database: "accountlink_db"
+  username: "accountlink_user"
+  password: "password"

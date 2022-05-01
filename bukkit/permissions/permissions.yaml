@@ -1,0 +1,19 @@
+# - <common name>:
+#   description: A simple description.
+#   default: OP/NOTOP/TRUE/FALSE
+#   children
+#     .test.child: true
+
+root-permission-node: "oblivion.accountlink"
+permissions:
+  .link:
+    description: "Allows use of the /link command"
+    default: "TRUE"
+  .unlink:
+    description: "Allows use of the /unlink command"
+    default: "TRUE"
+  .unlink.others:
+    description: "Allows use of the /unlink command on other players"
+    default: "TRUE"
+    children:
+      .unlink: true

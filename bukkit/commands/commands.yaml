@@ -1,0 +1,37 @@
+# - <common name>:
+#   description: A simple description.
+#   aliases:
+#   - ALIAS
+#   permission: "test.foo"
+#   permission-message: "Fuck you"
+#   usage: "USAGE: /test"
+
+root-permission-node: "oblivion.accountlink"
+commands:
+  link:
+    description: "Link your Discord account"
+    aliases:
+      - "linkaccount"
+      - "accountlink"
+    permission: "..link"
+    defaultPermission: "true"
+    permission-message: "You don't have permission to run this command"
+    usage: "Usage: /<command>"
+  unlink:
+    description: "Unlink your Discord account"
+    aliases:
+      - "unlinkaccount"
+      - "accountunlink"
+    permission: "..unlink"
+    defaultPermission: "true"
+    permission-message: "You don't have permission to run this command"
+    usage: "Usage: /<command>"
+  refresh:
+    description: "Refresh all linked Discord accounts"
+    aliases:
+      - "linkrefresh"
+      - "refreshlinked"
+    permission: "..refresh"
+    defaultPermission: "op"
+    permission-message: "You don't have permission to run this command"
+    usage: "Usage: /<command>"

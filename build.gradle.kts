@@ -1,48 +1,72 @@
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription.*
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 
 plugins {
     id("java")
     id("maven-publish")
     kotlin("jvm") version "1.5.31"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.0"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("org.kordamp.gradle.yguard") version "0.5.0"
 }
 
 repositories {
+    mavenCentral()
     maven {
-        name = "local-maven-central"
-        url = uri("http://server1:8081/repository/maven-public/")
-        credentials {
-            username = "admin"
-            password = "^aqVKj8Yo7Sx2^hvfnNd0S2CV!OUJk"
-        }
-        isAllowInsecureProtocol = true
+        url = uri("https://papermc.io/repo/repository/maven-public/")
     }
+    maven { url = uri("https://repo.aikar.co/content/groups/aikar/")}
 }
+
+val exposedVersion: String by project
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    compileOnly("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
+    compileOnly("org.github.paperspigot:paperspigot-api:1.8.8-R0.1-SNAPSHOT")
     compileOnly("com.google.code.gson", "gson", "2.8.7") // All platforms
+    compileOnly("net.luckperms:api:5.3")
+    shadow("org.slf4j:slf4j-nop:1.7.21")
+    shadow("com.zaxxer:HikariCP:2.4.1")
+    shadow("mysql:mysql-connector-java:5.1.33")
+    shadow(kotlin("reflect"))
+    shadow("com.squareup.okhttp3:okhttp:4.2.2")
 }
 
 buildscript {
+    repositories {
+        mavenCentral()
+    }
     dependencies {
         classpath("org.yaml:snakeyaml:1.29")
     }
-    repositories {
-        maven {
-            name = "local-maven-central"
-            url = uri("http://server1:8081/repository/maven-public/")
-            credentials {
-                username = "admin"
-                password = "^aqVKj8Yo7Sx2^hvfnNd0S2CV!OUJk"
+}
+
+tasks {
+    build {
+        dependsOn(shadowJar)
+    }
+
+    named<ShadowJar>("shadowJar") {
+        dependencies {
+            configurations = listOf(project.configurations.shadow.get())
+        }
+        //relocate("kotlin.reflect", "us.oblivionmc.lib.kotlin.reflect")
+        //minimize()
+    }
+
+
+
+    yguardMain {
+        shrink {
+            keep {
+                methods
             }
-            isAllowInsecureProtocol = true
         }
     }
 }
 
-val targetJavaVersion = 16
+val targetJavaVersion = 8
 java {
     val javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
@@ -83,11 +107,6 @@ publishing {
                         name.set("Connor Beam")
                         email.set("beamconnor@gmail.com")
                     }
-                    developer {
-                        id.set("KoromaruKoruko")
-                        name.set("Bailey Drahoss")
-                        email.set("bailey.drahoss@outlook.com")
-                    }
                 }
             }
         }
@@ -111,7 +130,7 @@ publishing {
 // Most configuration entries can be set in gradle.properties
 
 // Commands and Permissions are setup in the "bukkit" directory in their respective "commands" and "permissions" subdirectories
-// example.yaml files are included in both directories
+// commands.yaml files are included in both directories
 
 // Example gradle.properties below (This will generate a working plugin.yml)
 /*
